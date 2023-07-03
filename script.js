@@ -8,7 +8,7 @@ document.querySelector("button").addEventListener("click",()=>{
     let endTime=addMinutes(currDate,Number(countDownTime));
     console.log(endTime);
     countDownDisplay.textContent=currDate.toLocaleTimeString();
-    endTimeDisplay.textContent=endTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });;
+    endTimeDisplay.textContent=formatEndTime(endTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }));
     endTime=endTime.toLocaleTimeString();
     let displayTime = setInterval(()=>{
         let currTime = new Date().toLocaleTimeString();
@@ -20,6 +20,12 @@ document.querySelector("button").addEventListener("click",()=>{
 const addMinutes=(date,mins)=>{
     date.setMinutes(date.getMinutes()+mins);
     return date;
+}
+
+const formatEndTime=(timeString)=>{
+    const [hours, minutes, meridiem] = timeString.split(/:| /);
+    const formattedTimeString = `${parseInt(hours, 10)}:${minutes} ${meridiem}`;
+    return formattedTimeString;
 }
 
 
