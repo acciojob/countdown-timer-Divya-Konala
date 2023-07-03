@@ -5,9 +5,11 @@ const endTimeDisplay=document.querySelector("#endTime");
 document.querySelector("button").addEventListener("click",()=>{
     let countDownTime=document.querySelector("input").value;
     let currDate=new Date();
-    let endTime=addMinutes(currDate,Number(countDownTime)).toLocaleTimeString();
+    let endTime=addMinutes(currDate,Number(countDownTime));
+    console.log(endTime);
     countDownDisplay.textContent=currDate.toLocaleTimeString();
-    endTimeDisplay.textContent=endTime;
+    endTimeDisplay.textContent=endTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });;
+    endTime=endTime.toLocaleTimeString();
     let displayTime = setInterval(()=>{
         let currTime = new Date().toLocaleTimeString();
         countDownDisplay.textContent=currTime;
